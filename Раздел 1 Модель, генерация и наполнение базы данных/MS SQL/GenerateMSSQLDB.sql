@@ -96,7 +96,7 @@ CREATE TABLE [subscribes]
 
 CREATE TABLE [subscriptions]
 (
-	[sb_id] int NOT NULL IDENTITY (1, 1),
+	[sb_id] int NOT NULL,
 	[sb_subscriber] int,
 	[sb_book] int,
 	[sb_start] date,
