@@ -74,13 +74,11 @@ CREATE TABLE `subscribers`
 CREATE TABLE `subscriptions`
 (
 	`sb_id` INTEGER UNSIGNED NOT NULL,
-	`sb_subscriber` INTEGER UNSIGNED,
-	`sb_book` INTEGER UNSIGNED,
+	`s_id` INTEGER UNSIGNED,
+	`b_id` INTEGER UNSIGNED,
 	`sb_start` DATE,
 	`sb_finish` DATE,
 	`sb_is_active` ENUM ('Y', 'N'),
-	`s_id` INTEGER,
-	`b_id` INTEGER,
 	CONSTRAINT `PK_subscriptions` PRIMARY KEY (`sb_id`)
 )
 ;
@@ -107,16 +105,6 @@ ALTER TABLE `m2m_books_genres`
 ALTER TABLE `m2m_books_genres` 
  ADD CONSTRAINT `FK_m2m_books_genres_genres`
 	FOREIGN KEY (`g_id`) REFERENCES `genres` (`g_id`) ON DELETE Cascade ON UPDATE Cascade
-;
-
-ALTER TABLE `subscriptions` 
- ADD CONSTRAINT `FK_subscriptions_subscribers`
-	FOREIGN KEY (`sb_subscriber`) REFERENCES `subscribers` (`s_id`) ON DELETE Cascade ON UPDATE Cascade
-;
-
-ALTER TABLE `subscriptions` 
- ADD CONSTRAINT `FK_subscriptions_books`
-	FOREIGN KEY (`sb_book`) REFERENCES `books` (`b_id`) ON DELETE Cascade ON UPDATE Cascade
 ;
 
 SET FOREIGN_KEY_CHECKS=1
