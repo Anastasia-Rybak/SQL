@@ -1,0 +1,2 @@
+-- Задача 2.1.2.b{19}: показать поимённый список читателей с указанием ко-личества полных тёзок по каждому имени.subscribers
+SELECT `s_name`, COUNT(*) AS `people_count` FROM `subscribers` GROUP BY `s_name`

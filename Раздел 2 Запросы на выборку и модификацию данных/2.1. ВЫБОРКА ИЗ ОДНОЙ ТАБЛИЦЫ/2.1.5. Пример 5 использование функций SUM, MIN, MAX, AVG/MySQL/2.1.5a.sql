@@ -1,0 +1,2 @@
+-- Задача 2.1.5.a{31}: показать общее (сумму), минимальное, максимальное и среднее значение количества экземпляров книг в библиотеке.
+SELECT SUM(`b_quantity`) AS `sum`, MIN(`b_quantity`) AS `min`, MAX(`b_quantity`) AS `max`, round(AVG(`b_quantity`)) AS `avg` FROM `books`
