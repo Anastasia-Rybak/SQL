@@ -1,0 +1,2 @@
+-- Задание 2.1.9.TSK.B: показать в днях, сколько в среднем времени читатели уже зарегистрированы в библиотеке (временем регистрации считать диапазон от первой даты получения читателем книги до текущей даты).
+  select avg(`diff`) from (select datediff(Curdate(), `sb_start`) as `diff` from `subscriptions` group by `s_id` order by `sb_start` asc) as diffs

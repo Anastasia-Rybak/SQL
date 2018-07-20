@@ -1,0 +1,2 @@
+-- Задача 2.1.10.a{61}: показать по каждому году, сколько раз в этот год чита-тели брали книги.
+SELECT YEAR(`sb_start`) AS `year`, COUNT(`sb_id`) AS `books_taken` FROM `subscriptions` GROUP BY `year` ORDER BY `year`

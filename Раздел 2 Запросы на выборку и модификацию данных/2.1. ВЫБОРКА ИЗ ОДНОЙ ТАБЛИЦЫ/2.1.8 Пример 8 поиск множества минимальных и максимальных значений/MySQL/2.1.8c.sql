@@ -1,0 +1,2 @@
+-- Задача 2.1.8.c{46}: показать все книги, количество экземпляров которых максимально (и одинаково для всех этих показанных книг).
+SELECT `b_name`, `b_quantity` FROM `books` WHERE `b_quantity` = (SELECT MAX(`b_quantity`) FROM `books`)

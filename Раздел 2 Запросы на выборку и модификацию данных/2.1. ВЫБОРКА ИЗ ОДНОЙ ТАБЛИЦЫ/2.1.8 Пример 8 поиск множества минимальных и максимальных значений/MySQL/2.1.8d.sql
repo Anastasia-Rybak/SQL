@@ -1,0 +1,2 @@
+-- Задача 2.1.8.d{48}: показать книгу (если такая есть), количество экземпля-ров которой больше, чем у любой другой книги.
+SELECT `b_name`, `b_quantity` FROM `books` AS `ext` WHERE `b_quantity` > ALL (SELECT `b_quantity` FROM `books` AS `int` WHERE `ext`.`b_id` != `int`.`b_id`)

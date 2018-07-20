@@ -1,0 +1,2 @@
+-- Задание 2.1.8.TSK.C: показать идентификатор «читателя-рекордсмена», взявшего в библиотеке больше книг, чем любой другой читатель.
+select `s_id` from `subscriptions` group by `s_id` having count(*) = (select count(*) as `count` from `subscriptions` group by `s_id` order by `count` desc limit 1) limit 1;

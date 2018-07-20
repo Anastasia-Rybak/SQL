@@ -1,0 +1,2 @@
+-- Задача 2.1.9.c{57}: показать, на сколько в среднем дней читатели берут книги (учесть только случаи, когда книги были возвращены).
+SELECT AVG(DATEDIFF(`sb_finish`, `sb_start`)) AS `avg_days` FROM `subscriptions` WHERE `sb_is_active` = 'N'

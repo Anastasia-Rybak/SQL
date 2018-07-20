@@ -1,0 +1,2 @@
+-- Задача 2.1.9.a{56}: показать, сколько в среднем экземпляров книг сейчас на руках у каждого читателя.
+SELECT AVG(`books_per_subscriber`) AS `avg_books` FROM (SELECT COUNT(`b_id`) AS `books_per_subscriber` FROM `subscriptions` WHERE `sb_is_active` = 'Y' GROUP BY `s_id`) AS `count_subquery`

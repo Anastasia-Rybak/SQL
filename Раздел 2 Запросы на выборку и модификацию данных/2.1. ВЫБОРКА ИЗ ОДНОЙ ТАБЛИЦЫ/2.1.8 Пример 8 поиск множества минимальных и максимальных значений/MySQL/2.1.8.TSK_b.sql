@@ -1,0 +1,2 @@
+-- Задание 2.1.8.TSK.B: показать идентификаторы всех «самых читающих читателей», взявших в библиотеке больше всего книг.
+select `s_id` from `subscriptions` group by `s_id` having count(*) = (select count(*) as `count` from `subscriptions` group by `s_id` order by `count` desc limit 1);

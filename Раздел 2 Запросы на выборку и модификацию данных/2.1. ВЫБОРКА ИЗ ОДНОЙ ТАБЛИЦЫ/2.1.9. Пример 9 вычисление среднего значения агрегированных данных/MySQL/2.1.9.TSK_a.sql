@@ -1,0 +1,2 @@
+-- Задание 2.1.9.TSK.A: показать, сколько в среднем экземпляров книг есть в библиотеке.
+select avg(`sum_quantity`) as `avg_quantity` from(select `b_quantity` as `sum_quantity` from `books`) as quntity_alias

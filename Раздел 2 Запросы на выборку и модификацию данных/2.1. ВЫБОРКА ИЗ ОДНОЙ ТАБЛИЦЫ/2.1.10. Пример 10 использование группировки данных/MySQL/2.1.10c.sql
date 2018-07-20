@@ -1,0 +1,2 @@
+-- Задача 2.1.10.c{63}: показать, сколько книг было возвращено и не возвра-щено в библиотеку.
+SELECT IF(`sb_is_active` = 'Y', 'Not returned', 'Returned') AS `status`, COUNT(`sb_id`) AS `books` FROM `subscriptions` GROUP BY `status` ORDER BY `status` DESC
