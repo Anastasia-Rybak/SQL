@@ -1,0 +1,2 @@
+-- Задача 2.2.3.c{86}: показать список читателей, никогда не бравших в биб-лиотеке книги (использовать JOIN).
+SELECT `subscribers`.`s_id`, `s_name` FROM `subscribers` LEFT JOIN `subscriptions` ON `subscribers`.`s_id` = `subscriptions`.`s_id` WHERE `subscriptions`.`s_id` IS NULL

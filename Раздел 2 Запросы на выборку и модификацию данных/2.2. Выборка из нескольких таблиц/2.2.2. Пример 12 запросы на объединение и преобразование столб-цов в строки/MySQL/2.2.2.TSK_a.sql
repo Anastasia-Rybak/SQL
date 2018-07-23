@@ -1,0 +1,2 @@
+-- Задание 2.2.2.TSK.A: показать все книги с их жанрами (дублирование названий книг не допускается).
+SELECT `b_name` AS `book`, GROUP_CONCAT(DISTINCT `g_name` ORDER BY `g_name` SEPARATOR ', ') AS `genre(s)` FROM `books` JOIN `m2m_books_genres` USING(`b_id`) JOIN `genres` USING(`g_id`) GROUP BY `b_id` ORDER BY `b_name`

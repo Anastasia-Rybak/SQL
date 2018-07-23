@@ -1,0 +1,2 @@
+-- Задача 2.2.3.a{83}: показать список читателей, когда-либо бравших в биб-лиотеке книги (использовать JOIN).
+SELECT DISTINCT `subscribers`.`s_id`, `s_name` FROM `subscribers` JOIN `subscriptions` ON `subscribers`.`s_id` = `subscriptions`.`s_id`

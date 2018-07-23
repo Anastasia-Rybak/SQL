@@ -1,0 +1,2 @@
+-- Задача 2.2.1.a{67}: показать всю человекочитаемую информацию обо всех книгах (т.е. название, автора, жанр).
+SELECT `b_name`, `a_name`, `g_name` FROM `books` JOIN `m2m_books_authors` USING(`b_id`) JOIN `authors` USING(`a_id`) JOIN `m2m_books_genres` USING(`b_id`) JOIN `genres` USING(`g_id`)

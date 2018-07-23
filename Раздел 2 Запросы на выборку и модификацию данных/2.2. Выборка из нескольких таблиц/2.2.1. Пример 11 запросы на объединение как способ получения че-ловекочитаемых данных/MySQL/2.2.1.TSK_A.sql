@@ -1,0 +1,2 @@
+-- Задание 2.2.1.TSK.A: показать список книг, у которых более одного ав-тора.
+select b_name from books join (select b_id as `book`, count(*) as `count` from `m2m_books_authors` group by `b_id`) as alias on books.b_id = `book` where `count` > 1

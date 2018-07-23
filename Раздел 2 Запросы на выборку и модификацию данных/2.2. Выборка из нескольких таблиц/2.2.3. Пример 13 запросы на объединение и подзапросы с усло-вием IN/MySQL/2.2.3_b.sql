@@ -1,0 +1,2 @@
+-- Задача 2.2.3.b{84}: показать список читателей, когда-либо бравших в биб-лиотеке книги (не использовать JOIN).
+SELECT `s_id`, `s_name` FROM `subscribers` WHERE `s_id` IN (SELECT DISTINCT `s_id` FROM `subscriptions`)

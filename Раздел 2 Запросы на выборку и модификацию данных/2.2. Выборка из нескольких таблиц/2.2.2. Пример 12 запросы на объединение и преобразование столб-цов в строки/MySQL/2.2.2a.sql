@@ -1,0 +1,2 @@
+-- Задача 2.2.2.a{72}: показать все книги с их авторами (дублирование назва-ний книг не допускается).
+SELECT `b_name` AS `book`, GROUP_CONCAT(`a_name` ORDER BY `a_name` SEPARATOR ', ') AS `author(s)` FROM `books` JOIN `m2m_books_authors` USING(`b_id`) JOIN `authors` USING(`a_id`) GROUP BY `b_id` ORDER BY `b_name`
