@@ -1,34 +1,47 @@
 LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/authors.csv' 
+REPLACE
 INTO TABLE authors 
 FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/books.csv' 
+LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/books.csv'
+REPLACE 
 INTO TABLE books 
 FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/genres.csv' 
+LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/genres.csv'
+REPLACE 
 INTO TABLE genres 
 FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/subscribers.csv' 
+LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/subscribers.csv'
+REPLACE 
 INTO TABLE subscribers 
 FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/m2m_books_genres.csv' 
+LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/m2m_books_genres.csv'
+REPLACE 
 INTO TABLE m2m_books_genres 
 FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/m2m_books_authors.csv' 
+LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/m2m_books_authors.csv'
+REPLACE 
 INTO TABLE m2m_books_authors 
 FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/subscriptions.csv' 
+LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/subscriptions.csv'
+REPLACE 
 INTO TABLE subscriptions 
 FIELDS TERMINATED BY ';'
 LINES TERMINATED BY '\r\n'
