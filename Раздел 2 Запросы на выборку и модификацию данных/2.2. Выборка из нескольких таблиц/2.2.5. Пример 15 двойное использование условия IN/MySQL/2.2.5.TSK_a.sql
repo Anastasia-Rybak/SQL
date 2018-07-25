@@ -1,0 +1,2 @@
+-- Задание 2.2.5.TSK.A: показать книги, написанные Пушкиным и/или Азимовым (индивидуально или в соавторстве — не важно).
+select distinct books.b_name from books join m2m_books_authors using (b_id) join authors using (a_id) where authors.a_name in ('А.С. Пушкин','А. Азимов');  

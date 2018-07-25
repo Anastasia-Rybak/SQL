@@ -1,0 +1,2 @@
+-- Задача 2.2.5.d{101}: показать книги из жанров «Программирование» и/или «Классика» (с использованием JOIN; идентификаторы жанров неиз-вестны).
+SELECT DISTINCT `b_id`, `b_name` FROM `books` JOIN `m2m_books_genres` USING ( `b_id` ) WHERE `g_id` IN (SELECT `g_id` FROM `genres` WHERE `g_name` IN ( N'Программирование', N'Классика' ) ) ORDER BY `b_name` ASC

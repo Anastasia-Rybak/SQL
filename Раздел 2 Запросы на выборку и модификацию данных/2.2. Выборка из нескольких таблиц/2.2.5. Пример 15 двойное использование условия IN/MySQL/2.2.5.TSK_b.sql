@@ -1,0 +1,2 @@
+-- Задание 2.2.5.TSK.B: показать книги, написанные Карнеги и Страустру-пом в соавторстве.
+select distinct books.b_name from books where books.b_id in (select b_id from m2m_books_authors join authors using (a_id) where authors.a_name = 'Б. Страуструп') and books.b_id in (select b_id from m2m_books_authors join authors using (a_id) where authors.a_name = 'Д. Карнеги'); 

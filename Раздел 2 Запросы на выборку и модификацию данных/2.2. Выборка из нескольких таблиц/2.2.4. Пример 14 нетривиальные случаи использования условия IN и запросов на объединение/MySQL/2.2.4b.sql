@@ -1,0 +1,2 @@
+-- Задача 2.2.4.b{95}: показать список читателей, у которых сейчас на руках нет книг (не использовать JOIN).
+SELECT `s_id`, `s_name` FROM `subscribers` WHERE `s_id` NOT IN (SELECT DISTINCT `s_id` FROM `subscriptions` WHERE `sb_is_active` = 'Y')
