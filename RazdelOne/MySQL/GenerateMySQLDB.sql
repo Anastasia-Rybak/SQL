@@ -1,25 +1,10 @@
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS `authors` CASCADE
-;
+DROP DATABASE IF EXISTS `library`;
 
-DROP TABLE IF EXISTS `books` CASCADE
-;
+CREATE DATABASE IF NOT EXISTS `library` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-DROP TABLE IF EXISTS `genres` CASCADE
-;
-
-DROP TABLE IF EXISTS `m2m_books_authors` CASCADE
-;
-
-DROP TABLE IF EXISTS `m2m_books_genres` CASCADE
-;
-
-DROP TABLE IF EXISTS `subscribers` CASCADE
-;
-
-DROP TABLE IF EXISTS `subscriptions` CASCADE
-;
+USE `library`;
 
 CREATE TABLE `authors`
 (
