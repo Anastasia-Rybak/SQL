@@ -1,0 +1,2 @@
+-- Задание 2.2.6.TSK.E: показать всех авторов и количество экземпляров книг по каждому автору.
+select authors.a_name, sum(books.b_quantity) from authors join m2m_books_authors using (a_id) join books using(b_id) group by m2m_books_authors.a_id;

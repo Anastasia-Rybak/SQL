@@ -1,0 +1,2 @@
+-- Задание 2.2.6.TSK.B: показать книги, относящиеся к более чем одному жанру.
+select books.b_name, count(m2m_books_genres.b_id) as `count` from books join m2m_books_genres using (b_id) group by m2m_books_genres.b_id having `count` > 1;

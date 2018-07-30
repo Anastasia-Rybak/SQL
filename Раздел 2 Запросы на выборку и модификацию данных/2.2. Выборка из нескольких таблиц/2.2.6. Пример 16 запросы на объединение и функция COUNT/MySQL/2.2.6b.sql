@@ -1,0 +1,3 @@
+-- Задача 2.2.6.b{103}: показать, сколько реально экземпляров каждой книги сейчас есть в библиотеке.
+SELECT DISTINCT `books`.`b_id`, `b_name`, ( `b_quantity` - (SELECT COUNT(`int`.`b_id`) FROM `subscriptions` AS `int` WHERE `int`.`b_id` = `ext`.`b_id` AND `int`.`sb_is_active` = 'Y') ) AS `real_count` FROM `books` LEFT OUTER JOIN `subscriptions` AS `ext` ON `books`.`b_id` = `ext`.`b_id` ORDER BY `real_count` DESC;
+SELECT books.b_id, b_name, ( b_quantity - ifnull(`count`, 0) ) as `real_count` from books left outer join (select b_id as `id`, count(*) as `count` from subscriptions where subscriptions.sb_is_active = 'Y' group by b_id) as alias on books.b_id = `id` ORDER BY `real_count` DESC;

@@ -1,0 +1,2 @@
+-- Задание 2.2.6.TSK.F: показать всех авторов и количество книг (не экзем-пляров книг, а «книг как изданий») по каждому автору.
+select authors.a_name, count(m2m_books_authors.b_id) from authors join m2m_books_authors using (a_id) group by m2m_books_authors.a_id;
