@@ -1,0 +1,2 @@
+-- Задача 2.3.4.b{197}: скопировать (без повторений) в базу данных «Библио-тека» содержимое таблицы genres из базы данных «Большая библио-тека»; в случае совпадения первичных ключей добавить к существую-щему имени жанра слово « [OLD]».
+INSERT INTO `library`.`genres` ( `g_id`, `g_name` ) SELECT `g_id`, `g_name` FROM `huge_library`.`genres` ON DUPLICATE KEY UPDATE `library`.`genres`.`g_name` = CONCAT(`library`.`genres`.`g_name`, ' [OLD]')
