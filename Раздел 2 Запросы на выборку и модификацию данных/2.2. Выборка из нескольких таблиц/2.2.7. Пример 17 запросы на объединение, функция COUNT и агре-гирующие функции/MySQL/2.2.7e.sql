@@ -1,0 +1,2 @@
+-- Задача 2.2.7.e{124}: написать запрос, проверяющий, не была ли допущена ошибка в заполнении документов, при которой оказывается, что на руках сейчас большее количество экземпляров некоторой книги, чем их было в библиотеке. Вернуть 1, если ошибка есть и 0, если ошибки нет.
+SELECT EXISTS (SELECT `books`.`b_id` FROM `books` LEFT OUTER JOIN (SELECT `b_id`, COUNT(`b_id`) AS `taken` FROM `subscriptions` WHERE `sb_is_active` = 'Y' GROUP BY `b_id` ) AS `books_taken` ON `books`.`b_id` = `books_taken`.`b_id` WHERE ( `b_quantity` - IFNULL(`taken`, 0) ) < 0 LIMIT 1) AS `error_exists`

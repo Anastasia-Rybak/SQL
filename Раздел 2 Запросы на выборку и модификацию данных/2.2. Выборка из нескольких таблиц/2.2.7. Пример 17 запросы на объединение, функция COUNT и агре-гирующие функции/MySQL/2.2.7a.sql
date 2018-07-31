@@ -1,0 +1,2 @@
+-- Задача 2.2.7.a{115}: показать читаемость авторов, т.е. всех авторов и то ко-личество раз, которое книги этих авторов были взяты читателями.
+SELECT `a_id`, `a_name`, COUNT(`subscriptions`.`b_id`) AS `books` FROM `authors` JOIN `m2m_books_authors` USING ( `a_id` ) LEFT OUTER JOIN `subscriptions` ON `m2m_books_authors`.`b_id` = `subscriptions`.`b_id` GROUP BY `a_id` ORDER BY `books` DESC

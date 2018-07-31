@@ -1,0 +1,2 @@
+-- Задание 2.2.7.TSK.A: показать читаемость жанров, т.е. все жанры и то количество раз, которое книги этих жанров были взяты читателями.
+SELECT `g_id`, `g_name`, COUNT(`subscriptions`.`b_id`) AS `books` FROM `genres` JOIN `m2m_books_genres` USING ( `g_id` ) LEFT OUTER JOIN `subscriptions` ON `m2m_books_genres`.`b_id` = `subscriptions`.`b_id` GROUP BY `g_id` ORDER BY `books` DESC
