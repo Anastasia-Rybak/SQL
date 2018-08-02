@@ -1,5 +1,5 @@
 @echo off
-rem Задача 7.2.1.c{519}: написать командный файл для автоматизации созда-ния рабочей копии базы данных.
+rem В«Р°РґР°С‡Р° 7.2.1.c{519}: РЅР°РїРёСЃР°С‚СЊ РєРѕРјР°РЅРґРЅС‹Р№ С„Р°Р№Р» РґР»В¤ Р°РІС‚РѕРјР°С‚РёР·Р°С†РёРё СЃРѕР·РґР°-РЅРёВ¤ СЂР°Р±РѕС‡РµР№ РєРѕРїРёРё Р±Р°Р·С‹ РґР°РЅРЅС‹С….
 cd /d C:\Program Files (x86)\MySQL\MySQL Server 5.7\bin
 mysqldump -uroot -pm19n28j375k library --result-file=D:\SQL\Dump\MySQL\dump.sql
 mysql -uroot -pm19n28j375k -e "DROP SCHEMA `library_copy`;";

@@ -1,5 +1,5 @@
 @echo off
-rem Задача 7.2.1.b{518}: написать командный файл для автоматизации восста-новления базы данных из резервной копии.
+rem В«Р°РґР°С‡Р° 7.2.1.b{518}: РЅР°РїРёСЃР°С‚СЊ РєРѕРјР°РЅРґРЅС‹Р№ С„Р°Р№Р» РґР»В¤ Р°РІС‚РѕРјР°С‚РёР·Р°С†РёРё РІРѕСЃСЃС‚Р°-РЅРѕРІР»РµРЅРёВ¤ Р±Р°Р·С‹ РґР°РЅРЅС‹С… РёР· СЂРµР·РµСЂРІРЅРѕР№ РєРѕРїРёРё.
 cd /d C:\Program Files (x86)\MySQL\MySQL Server 5.7\bin
 mysql -uroot -pm19n28j375k -e "DROP SCHEMA `library`;";
 mysql -uroot -pm19n28j375k -e "CREATE SCHEMA `library` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
