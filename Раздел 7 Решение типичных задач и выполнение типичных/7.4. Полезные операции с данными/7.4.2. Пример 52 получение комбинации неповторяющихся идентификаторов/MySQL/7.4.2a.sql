@@ -1,0 +1,2 @@
+-- Задача 7.4.2.a{536}: написать запрос, формирующий пару гарантированно неповторяющихся идентификаторов читателей.
+SELECT `id_first`, `id_second` FROM (SELECT `s_id` AS `id_first` FROM `subscribers` ORDER BY RAND() LIMIT 2) AS `set1` CROSS JOIN (SELECT `s_id` AS `id_second` FROM `subscribers` ORDER BY RAND() LIMIT 1) AS `set2` WHERE `id_first` != `id_second` LIMIT 1

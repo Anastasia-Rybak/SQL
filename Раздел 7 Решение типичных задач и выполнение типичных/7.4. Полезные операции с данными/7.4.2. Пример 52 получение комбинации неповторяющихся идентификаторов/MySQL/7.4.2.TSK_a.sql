@@ -1,0 +1,2 @@
+-- Задание 7.4.2.TSK.A: оптимизировтаь решение{536} задачи 7.4.2.a{536} таким образом, чтобы получение двух случайных записей для первого набора и одной случайной записи для второго набора происходило без упорядо-чивания по случайному числу.
+SELECT `id_first`, `id_second` FROM (SELECT `s_id` AS `id_first` FROM `subscribers` LIMIT 2) AS `set1` CROSS JOIN (SELECT `s_id` AS `id_second` FROM `subscribers` LIMIT 1) AS `set2` WHERE `id_first` != `id_second` LIMIT 1
