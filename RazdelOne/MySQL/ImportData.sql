@@ -46,3 +46,12 @@ INTO TABLE subscriptions
 FIELDS TERMINATED BY ';'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
+
+INSERT INTO `library`.`site_pages` (`sp_id`, `sp_name`) VALUES ('1', 'Главная');
+
+LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/site_pages.csv'
+REPLACE 
+INTO TABLE site_pages 
+FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 ROWS;
