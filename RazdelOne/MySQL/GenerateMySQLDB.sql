@@ -68,6 +68,20 @@ CREATE TABLE `subscriptions`
 )
 ;
 
+CREATE TABLE `site_pages`
+(
+	`sp_id` INT NOT NULL,
+	`sp_parent` INT,
+	`sp_name` VARCHAR(200),
+	CONSTRAINT `PK_site_pages` PRIMARY KEY (`sp_id`)
+)
+;
+
+ALTER TABLE `site_pages` 
+ ADD CONSTRAINT `FK_site_pages_site_pages`
+	FOREIGN KEY (`sp_parent`) REFERENCES `site_pages` (`sp_id`) ON DELETE Set Null ON UPDATE Set Null
+;
+
 ALTER TABLE `genres` 
  ADD CONSTRAINT `UQ_genres_g_name` UNIQUE (`g_name`)
 ;
