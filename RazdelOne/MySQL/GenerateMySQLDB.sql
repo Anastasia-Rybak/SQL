@@ -68,13 +68,41 @@ CREATE TABLE `subscriptions`
 )
 ;
 
+CREATE TABLE `cities`
+(
+	`ct_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+	`ct_name` VARCHAR(50),
+	CONSTRAINT `PK_cities` PRIMARY KEY (`ct_id`)
+)
+;
+
+CREATE TABLE `connections`
+(
+	`cn_from` INT NOT NULL,
+	`cn_to` INT NOT NULL,
+	`cn_cost` DOUBLE,
+	`cn_bidir` ENUM ('N', 'Y'),
+	CONSTRAINT `PK_connections` PRIMARY KEY (`cn_from`,`cn_to`)
+)
+;
+
 CREATE TABLE `site_pages`
 (
-	`sp_id` INT NOT NULL,
+	`sp_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 	`sp_parent` INT,
 	`sp_name` VARCHAR(200),
 	CONSTRAINT `PK_site_pages` PRIMARY KEY (`sp_id`)
 )
+;
+
+ALTER TABLE `connections` 
+ ADD CONSTRAINT `FK_connections_cities`
+	FOREIGN KEY (`cn_from`) REFERENCES `cities` (`ct_id`) ON DELETE Cascade ON UPDATE Cascade
+;
+
+ALTER TABLE `connections` 
+ ADD CONSTRAINT `FK_connections_cities_02`
+	FOREIGN KEY (`cn_to`) REFERENCES `cities` (`ct_id`) ON DELETE Cascade ON UPDATE Cascade
 ;
 
 ALTER TABLE `site_pages` 
