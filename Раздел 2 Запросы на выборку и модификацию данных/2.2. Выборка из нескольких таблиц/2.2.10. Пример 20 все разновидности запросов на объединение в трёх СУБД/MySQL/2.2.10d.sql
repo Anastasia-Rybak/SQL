@@ -1,0 +1,2 @@
+-- Задача 2.2.10.d: показать все компьютеры с информацией о том, в каких они расположены комнатах.
+SELECT `r_id`, `r_name`, `c_id`, `c_room`, `c_name` FROM `rooms` RIGHT JOIN `computers` ON `r_id` = `c_room`

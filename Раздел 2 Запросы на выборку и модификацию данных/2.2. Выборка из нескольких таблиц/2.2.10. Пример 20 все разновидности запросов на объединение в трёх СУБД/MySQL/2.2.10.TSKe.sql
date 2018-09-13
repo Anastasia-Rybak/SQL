@@ -1,0 +1,2 @@
+-- Задание 2.2.10.TSK.E: показать информацию о том, какие книги в прин-ципе может взять в библиотеке каждый из читателей.
+select books.b_name, subscribers.s_name from books, subscribers order by subscribers.s_name;

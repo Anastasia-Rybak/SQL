@@ -1,0 +1,2 @@
+-- Задание 2.2.10.TSK.D: показать книги, которые ни разу не были взяты ни-кем из читателей.
+select books.b_id, books.b_name from  books left join subscriptions on books.b_id = subscriptions.b_id where subscriptions.b_id is null;

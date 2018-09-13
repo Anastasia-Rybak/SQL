@@ -1,0 +1,2 @@
+-- Задача 2.2.10.g: показать информацию по всем пустым комнатам и сво-бодным компьютерам.
+SELECT `r_id`, `r_name`, `c_id`, `c_room`, `c_name` FROM `rooms` LEFT JOIN `computers` ON `r_id` = `c_room` WHERE `c_id` IS NULL UNION SELECT `r_id`, `r_name`, `c_id`, `c_room`, `c_name` FROM `rooms` RIGHT JOIN `computers` ON `r_id` = `c_room` WHERE `r_id` IS NULL
