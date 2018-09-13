@@ -95,6 +95,29 @@ CREATE TABLE `site_pages`
 )
 ;
 
+CREATE TABLE `computers`
+(
+	`c_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+	`c_room` INT,
+	`c_name` VARCHAR(50),
+	CONSTRAINT `PK_computers` PRIMARY KEY (`c_id`)
+)
+;
+
+CREATE TABLE `rooms`
+(
+	`r_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+	`r_name` VARCHAR(50),
+	`r_space` TINYINT,
+	CONSTRAINT `PK_rooms` PRIMARY KEY (`r_id`)
+)
+;
+
+ALTER TABLE `computers` 
+ ADD CONSTRAINT `FK_computers_rooms`
+	FOREIGN KEY (`c_room`) REFERENCES `rooms` (`r_id`) ON DELETE Cascade ON UPDATE Cascade
+;
+
 ALTER TABLE `connections` 
  ADD CONSTRAINT `FK_connections_cities`
 	FOREIGN KEY (`cn_from`) REFERENCES `cities` (`ct_id`) ON DELETE Cascade ON UPDATE Cascade

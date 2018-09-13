@@ -47,8 +47,6 @@ FIELDS TERMINATED BY ';'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
 
-INSERT INTO `library`.`site_pages` (`sp_id`, `sp_name`) VALUES ('1', 'Главная');
-
 LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/site_pages.csv'
 REPLACE 
 INTO TABLE site_pages 
@@ -66,6 +64,20 @@ IGNORE 1 ROWS;
 LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/connections.csv'
 REPLACE 
 INTO TABLE connections 
+FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/rooms.csv'
+REPLACE 
+INTO TABLE rooms 
+FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'D:/SQL/RazdelOne/MySQL/CSVForImport/computers.csv'
+REPLACE 
+INTO TABLE computers 
 FIELDS TERMINATED BY ';'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
