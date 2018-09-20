@@ -52,6 +52,7 @@ CREATE TABLE `subscribers`
 (
 	`s_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT ,
 	`s_name` VARCHAR(150),
+	`s_last_visit` DATE,
 	CONSTRAINT `PK_subscribers` PRIMARY KEY (`s_id`)
 )
 ;
@@ -78,8 +79,8 @@ CREATE TABLE `cities`
 
 CREATE TABLE `connections`
 (
-	`cn_from` INT NOT NULL,
-	`cn_to` INT NOT NULL,
+	`cn_from` INT UNSIGNED NOT NULL,
+	`cn_to` INT UNSIGNED NOT NULL,
 	`cn_cost` DOUBLE,
 	`cn_bidir` ENUM ('N', 'Y'),
 	CONSTRAINT `PK_connections` PRIMARY KEY (`cn_from`,`cn_to`)
@@ -89,7 +90,7 @@ CREATE TABLE `connections`
 CREATE TABLE `site_pages`
 (
 	`sp_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-	`sp_parent` INT,
+	`sp_parent` INT UNSIGNED,
 	`sp_name` VARCHAR(200),
 	CONSTRAINT `PK_site_pages` PRIMARY KEY (`sp_id`)
 )
@@ -98,7 +99,7 @@ CREATE TABLE `site_pages`
 CREATE TABLE `computers`
 (
 	`c_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-	`c_room` INT,
+	`c_room` INT UNSIGNED,
 	`c_name` VARCHAR(50),
 	CONSTRAINT `PK_computers` PRIMARY KEY (`c_id`)
 )

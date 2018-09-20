@@ -81,3 +81,7 @@ INTO TABLE computers
 FIELDS TERMINATED BY ';'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
+
+set sql_safe_updates = 0;
+UPDATE `subscribers` LEFT JOIN (SELECT `s_id`, MAX(`sb_start`) AS `last_visit` FROM `subscriptions` GROUP BY `s_id`) AS `prepared_data` using(`s_id`) SET `s_last_visit` = `last_visit`;
+set sql_safe_updates = 1;
