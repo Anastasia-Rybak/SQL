@@ -10,6 +10,7 @@ CREATE TABLE `authors`
 (
 	`a_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT ,
 	`a_name` VARCHAR(150),
+	`a_last_issue` DATE,
 	CONSTRAINT `PK_authors` PRIMARY KEY (`a_id`)
 )
 ;
@@ -28,6 +29,7 @@ CREATE TABLE `genres`
 (
 	`g_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT ,
 	`g_name` VARCHAR(150),
+	`g_books` INT UNSIGNED default 0,
 	CONSTRAINT `PK_genres` PRIMARY KEY (`g_id`)
 )
 ;
@@ -52,7 +54,9 @@ CREATE TABLE `subscribers`
 (
 	`s_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT ,
 	`s_name` VARCHAR(150),
-	`s_last_visit` DATE,
+	`s_last_visit` DATE,    
+	`s_books` INT UNSIGNED default 0,
+	`s_count_books` INT UNSIGNED default 0,
 	CONSTRAINT `PK_subscribers` PRIMARY KEY (`s_id`)
 )
 ;
@@ -60,8 +64,8 @@ CREATE TABLE `subscribers`
 CREATE TABLE `subscriptions`
 (
 	`sb_id` INTEGER UNSIGNED NOT NULL,
-	`s_id` INTEGER UNSIGNED,
-	`b_id` INTEGER UNSIGNED,
+	`sb_subscriber` INTEGER UNSIGNED,
+	`sb_book` INTEGER UNSIGNED,
 	`sb_start` DATE,
 	`sb_finish` DATE,
 	`sb_is_active` ENUM ('Y', 'N'),
@@ -156,6 +160,16 @@ ALTER TABLE `m2m_books_genres`
 ALTER TABLE `m2m_books_genres` 
  ADD CONSTRAINT `FK_m2m_books_genres_genres`
 	FOREIGN KEY (`g_id`) REFERENCES `genres` (`g_id`) ON DELETE Cascade ON UPDATE Cascade
+;
+
+ALTER TABLE `subscriptions` 
+ ADD CONSTRAINT `FK_subscriptions_books`
+	FOREIGN KEY (`sb_book`) REFERENCES `books` (`b_id`) ON DELETE Cascade ON UPDATE Cascade
+;
+
+ALTER TABLE `subscriptions` 
+ ADD CONSTRAINT `FK_subscriptions_subscribers`
+	FOREIGN KEY (`sb_subscriber`) REFERENCES `subscribers` (`s_id`) ON DELETE Cascade ON UPDATE Cascade
 ;
 
 SET FOREIGN_KEY_CHECKS=1
