@@ -44,7 +44,7 @@ FOR EACH ROW
 $$ 
 DELIMITER ;
 INSERT INTO `subscriptions` VALUES (500, 1, 1, '2020-01-12', '2020-02-12', 'N');
-INSERT INTO `subscriptions` (`sb_id`, `sb_subscriber`, `sb_book`, `sb_start`, `sb_finish`, `sb_is_active`) VALUES (501, 3, 3, '2020-01-12', '2020-02-12', 'N');
+INSERT INTO `subscriptions` VALUES (501, 3, 3, '2020-01-12', '2020-02-12', 'N');
 INSERT INTO `subscriptions` VALUES (502, 1, 1, '2000-01-12', '2000-02-12', 'N');
 INSERT INTO `subscriptions` VALUES (503, 1, 1, '2000-01-12', '2020-02-12', 'N');
 UPDATE `subscriptions` SET `sb_start` = '2020-01-01' WHERE `sb_id` = 503;
