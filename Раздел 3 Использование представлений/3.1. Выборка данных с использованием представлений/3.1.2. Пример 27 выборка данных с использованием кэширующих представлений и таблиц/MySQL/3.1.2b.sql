@@ -10,8 +10,6 @@ CREATE TABLE `subscriptions_ready`
     `sb_is_active` ENUM ('Y', 'N') NOT NULL, 
 	CONSTRAINT `PK_subscriptions` PRIMARY KEY (`sb_id`) 
 );
--- Очистка таблицы: 
-TRUNCATE TABLE `subscriptions_ready`; 
 -- Инициализация данных: 
 INSERT INTO `subscriptions_ready` (`sb_id`, `sb_subscriber`, `sb_book`, `sb_start`, `sb_finish`, `sb_is_active`) 
 SELECT `sb_id`, `s_name` AS `sb_subscriber`, `b_name` AS `sb_book`, `sb_start`, `sb_finish`, `sb_is_active` 
