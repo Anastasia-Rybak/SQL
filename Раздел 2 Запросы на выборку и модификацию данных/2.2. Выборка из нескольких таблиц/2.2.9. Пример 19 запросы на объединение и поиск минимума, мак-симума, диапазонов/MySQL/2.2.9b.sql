@@ -1,0 +1,2 @@
+-- Задача 2.2.9.b{134}: показать читателя (или читателей, если их окажется несколько), быстрее всего прочитавшего книгу (учитывать только случаи, когда книга возвращена).
+SELECT DISTINCT `s_id`, `s_name`, DATEDIFF(`sb_finish`, `sb_start`) AS `days` FROM `subscribers` JOIN `subscriptions` using(s_id) WHERE `sb_is_active` = 'N' AND DATEDIFF(`sb_finish`, `sb_start`) = (SELECT DATEDIFF(`sb_finish`, `sb_start`) AS `days` FROM `subscriptions` WHERE `sb_is_active` = 'N' ORDER BY `days` ASC LIMIT 1)

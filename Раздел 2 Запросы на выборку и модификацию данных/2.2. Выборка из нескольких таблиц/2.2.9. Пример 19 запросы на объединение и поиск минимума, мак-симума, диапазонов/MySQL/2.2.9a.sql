@@ -1,0 +1,2 @@
+-- Задача 2.2.9.a{132}: показать читателя, первым взявшего в библиотеке книгу.
+SELECT `s_name` FROM `subscribers` WHERE `s_id` = (SELECT `sb_subscriber` FROM `subscriptions` ORDER BY `sb_subscriber` ASC LIMIT 1)

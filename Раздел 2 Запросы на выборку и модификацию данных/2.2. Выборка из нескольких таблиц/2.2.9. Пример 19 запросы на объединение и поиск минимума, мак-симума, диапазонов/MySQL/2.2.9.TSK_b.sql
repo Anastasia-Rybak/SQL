@@ -1,0 +1,2 @@
+-- Задание 2.2.9.TSK.B: показать читателя (или читателей, если их окажется несколько), дольше всего держащего у себя книгу (учитывать только слу-чаи, когда книга не возвращена).
+SELECT DISTINCT `s_id`, `s_name`, DATEDIFF(`sb_finish`, `sb_start`) AS `days` FROM `subscribers` JOIN `subscriptions` using(s_id) WHERE `sb_is_active` = 'N' AND DATEDIFF(`sb_finish`, `sb_start`) = (SELECT DATEDIFF(`sb_finish`, `sb_start`) AS `days` FROM `subscriptions` WHERE `sb_is_active` = 'N' ORDER BY `days` DESC LIMIT 1)

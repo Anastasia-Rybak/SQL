@@ -1,0 +1,2 @@
+-- Задача 2.2.8.b{129}: показать авторов, работавших в двух и более жанрах (даже если каждая отдельная книга автора относится только к одному жанру).
+SELECT `a_id`, `a_name`, COUNT(`g_id`) AS `genres_count` FROM (SELECT DISTINCT `a_id`, `g_id` FROM `m2m_books_genres` JOIN `m2m_books_authors` USING (`b_id`) ) AS `prepared_data` JOIN `authors` USING (`a_id`) GROUP BY `a_id` HAVING `genres_count` > 1
