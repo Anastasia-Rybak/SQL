@@ -1,0 +1,2 @@
+-- Задание 2.2.7.TSK.C: показать среднюю читаемость жанров, т.е. среднее значение от того, сколько раз читатели брали книги каждого автора.
+SELECT AVG(`books`) AS `avg_reading` FROM (SELECT COUNT(`subscriptions`.`b_id`) AS `books` FROM `genres` JOIN `m2m_books_genres` USING (`g_id`) LEFT OUTER JOIN `subscriptions` ON `m2m_books_genres`.`b_id` = `subscriptions`.`b_id` GROUP BY `g_id`) AS `prepared_data`

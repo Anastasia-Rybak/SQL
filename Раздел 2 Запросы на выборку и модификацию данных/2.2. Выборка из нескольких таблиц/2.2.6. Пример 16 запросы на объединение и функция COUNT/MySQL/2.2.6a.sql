@@ -1,0 +1,2 @@
+-- Задача 2.2.6.a{102}: показать книги, у которых более одного автора.
+SELECT `b_id`, `b_name`, COUNT(`a_id`) AS `authors_count` FROM `books` JOIN `m2m_books_authors` USING (`b_id`) GROUP BY `b_id` HAVING `authors_count` > 1

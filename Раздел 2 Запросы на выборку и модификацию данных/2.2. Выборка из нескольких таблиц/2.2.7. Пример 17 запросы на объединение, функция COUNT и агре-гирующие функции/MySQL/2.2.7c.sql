@@ -1,0 +1,2 @@
+-- Задача 2.2.7.c{119}: показать среднюю читаемость авторов, т.е. среднее значение от того, сколько раз читатели брали книги каждого автора.
+SELECT AVG(`books`) AS `avg_reading` FROM (SELECT COUNT(`subscriptions`.`b_id`) AS `books` FROM `authors` JOIN `m2m_books_authors` USING (`a_id`) LEFT OUTER JOIN `subscriptions` ON `m2m_books_authors`.`b_id` = `subscriptions`.`b_id` GROUP BY `a_id`) AS `prepared_data`

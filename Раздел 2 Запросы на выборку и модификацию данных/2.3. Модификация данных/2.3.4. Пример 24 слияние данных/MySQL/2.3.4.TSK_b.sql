@@ -1,0 +1,2 @@
+-- Задание 2.3.4.TSK.B: скопировать (без повторений) в базу данных «Биб-лиотека» содержимое таблицы subscribers из базы данных «Большая библиотека»; в случае совпадения первичных ключей добавить к суще-ствующему имени читателя слово « [OLD]».
+INSERT INTO `library`.`subscribers` ( `s_id`, `s_name` ) SELECT `s_id`, `s_name` FROM `huge_library`.`subscribers` ON DUPLICATE KEY UPDATE `library`.`subscribers`.`s_name` = CONCAT(`library`.`subscribers`.`s_name`, ' [OLD]')

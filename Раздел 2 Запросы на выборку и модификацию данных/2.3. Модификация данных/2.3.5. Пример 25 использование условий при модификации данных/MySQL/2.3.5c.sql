@@ -1,0 +1,4 @@
+-- Задача 2.3.5.c{205}: обновить все имена читателей, добавив в конец в квад-ратных скобках количество невозвращённых книг (например, « [3]») и слова « [RED]», « [YELLOW]», « [GREEN]», соответственно, если у чита-теля сейчас на руках более пяти книг, от трёх до пяти, менее трёх.
+SET SQL_SAFE_UPDATES = 0;
+UPDATE `subscribers` SET `s_name` = CONCAT(`s_name`, ( SELECT `postfix` FROM (SELECT `subscribers`.`s_id`, @x := IFNULL ( (SELECT COUNT(`b_id`) FROM `subscriptions` AS `int` WHERE `int`.`sb_is_active` = 'Y' AND `int`.`s_id` = `ext`.`s_id` GROUP BY `int`.`s_id`), 0 ), CASE WHEN @x > 5 THEN (SELECT CONCAT(' [', @x, '] [RED]')) WHEN @x >= 3 AND @x <= 5 THEN (SELECT CONCAT(' [', @x, '] [YELLOW]')) ELSE (SELECT CONCAT(' [', @x, '] [GREEN]')) END AS `postfix` FROM `subscribers` LEFT JOIN `subscriptions` AS `ext` ON `subscribers`.`s_id` = ext.`s_id` GROUP BY `s_id`) AS `data` WHERE `data`.`s_id` = `subscribers`.`s_id`) );
+SET SQL_SAFE_UPDATES = 1;

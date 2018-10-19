@@ -1,0 +1,2 @@
+-- Задача 2.2.8.a{127}: показать авторов, одновременно работавших в двух и более жанрах (т.е. хотя бы одна книга автора должна одновременно от-носиться к двум и более жанрам).
+SELECT `a_id`, `a_name`, MAX(`genres_count`) AS `genres_count` FROM (SELECT `a_id`, `a_name`, COUNT(`g_id`) AS `genres_count` FROM `authors` JOIN `m2m_books_authors` USING (`a_id`) JOIN `m2m_books_genres` USING (`b_id`) GROUP BY `a_id`, `b_id` HAVING `genres_count` > 1) AS `prepared_data` GROUP BY `a_id`

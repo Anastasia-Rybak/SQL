@@ -1,0 +1,4 @@
+-- Задача 2.3.5.b{203}: изменить даты возврата всех книг на «два месяца от текущего дня», если книга не возвращена и у соответствующего читателя сейчас на руках больше двух книг, и на «месяц от текущего дня» в про-тивном случае (книга возвращена или у соответствующего читателя на руках сейчас не более двух книг).
+SET SQL_SAFE_UPDATES = 0;
+UPDATE `subscriptions` AS `ext` SET `sb_finish` = CASE WHEN `sb_is_active` = 'Y' AND EXISTS (SELECT `int`.`s_id` FROM (SELECT `s_id`, `b_id`, `sb_is_active` FROM `subscriptions`) AS `int` WHERE `int`.`sb_is_active` = 'Y' AND `int`.`s_id` = `ext`.`s_id` GROUP BY `int`.`s_id` HAVING COUNT(`int`.`b_id`) > 2) THEN (SELECT DATE_ADD(`sb_finish`, INTERVAL 2 MONTH)) ELSE (SELECT DATE_ADD(`sb_finish`, INTERVAL 1 MONTH)) END;
+SET SQL_SAFE_UPDATES = 1;

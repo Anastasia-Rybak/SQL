@@ -1,0 +1,2 @@
+-- Задание 2.2.6.TSK.D: показать, сколько экземпляров каждой книги сейчас выдано читателям.
+SELECT books.b_id, b_name, ( b_quantity - ifnull(`count`, 0) ) as `real_count` from books left outer join (select b_id as `id`, count(*) as `count` from subscriptions where subscriptions.sb_is_active = 'N' group by b_id) as alias on books.b_id = `id` ORDER BY `real_count` DESC;

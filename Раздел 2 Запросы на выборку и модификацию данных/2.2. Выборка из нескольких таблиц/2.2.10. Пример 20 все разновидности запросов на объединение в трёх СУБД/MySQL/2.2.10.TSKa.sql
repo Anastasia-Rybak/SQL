@@ -1,0 +1,2 @@
+-- Задание 2.2.10.TSK.A: показать информацию о том, кто из читателей и когда брал в библиотеке книги.
+select `subscribers`.`s_id`, `s_name`, `sb_start` from `subscribers` join `subscriptions` on `subscribers`.`s_id` = `subscriptions`.`s_id` order by `s_name`;

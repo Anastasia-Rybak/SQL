@@ -1,0 +1,2 @@
+-- Задание 2.2.10.TSK.G: показать информацию о том, какие изданные до 2010-го года книги в принципе может взять в библиотеке каждый из чита-телей.
+select books.b_name, subscribers.s_name from books, subscribers  where books.b_year <=1990 order by subscribers.s_name;

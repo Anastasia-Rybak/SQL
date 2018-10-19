@@ -1,0 +1,2 @@
+-- Задание 2.2.6.TSK.A: показать авторов, написавших более одной книги.
+select authors.a_name, count(m2m_books_authors.a_id) as `count` from authors join m2m_books_authors using (a_id) group by m2m_books_authors.a_id having `count` > 1;

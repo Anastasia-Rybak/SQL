@@ -1,0 +1,2 @@
+-- Задача 2.2.10.j: показать возможные варианты расстановки компьютеров по комнатам (учитывать вместимость комнат).
+SELECT `r_id`, `r_name`, `r_space`, `c_id`, `c_room`, `c_name` FROM `rooms` CROSS JOIN (SELECT `c_id`, `c_room`, `c_name`, @row_num := @row_num + 1 AS `position` FROM `computers`, (SELECT @row_num := 0) AS `x` ORDER BY `c_name` ASC) AS `cross_apply_data` WHERE `position` <= `r_space` ORDER BY `r_id`, `c_id`

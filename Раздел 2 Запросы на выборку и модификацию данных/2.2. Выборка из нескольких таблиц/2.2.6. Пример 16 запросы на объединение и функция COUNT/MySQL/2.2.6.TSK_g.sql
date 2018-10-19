@@ -1,0 +1,2 @@
+-- Задание 2.2.6.TSK.G: показать всех читателей, не вернувших книги, и ко-личество невозвращённых книг по каждому такому читателю.
+select subscribers.s_name, count(subscriptions.sb_id) as `count` from subscribers join subscriptions using (s_id)  where subscriptions.sb_is_active = 'N' group by subscriptions.s_id;

@@ -1,0 +1,2 @@
+-- Задание 2.2.9.TSK.A: показать читателя, последним взявшего в библио-теке книгу.
+SELECT `s_name` FROM `subscribers` WHERE `s_id` = (SELECT `sb_subscriber` FROM `subscriptions` ORDER BY `sb_id` desc LIMIT 1)

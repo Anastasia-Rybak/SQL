@@ -1,0 +1,2 @@
+-- Задание 2.2.6.TSK.C: показать читателей, у которых сейчас на руках больше одной книги.
+select subscribers.s_name, count(subscriptions.sb_id) as `count` from subscribers join subscriptions using (s_id)  where subscriptions.sb_is_active = 'N' group by subscriptions.s_id  having `count` > 1;

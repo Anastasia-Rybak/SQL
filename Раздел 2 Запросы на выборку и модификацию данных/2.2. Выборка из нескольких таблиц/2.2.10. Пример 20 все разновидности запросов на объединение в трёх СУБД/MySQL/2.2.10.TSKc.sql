@@ -1,0 +1,2 @@
+-- Задание 2.2.10.TSK.C: показать информацию о читателях, никогда не бравших в библиотеке книги.
+select subscribers.* from subscribers left join subscriptions on subscribers.s_id = subscriptions.s_id where subscriptions.s_id is null;

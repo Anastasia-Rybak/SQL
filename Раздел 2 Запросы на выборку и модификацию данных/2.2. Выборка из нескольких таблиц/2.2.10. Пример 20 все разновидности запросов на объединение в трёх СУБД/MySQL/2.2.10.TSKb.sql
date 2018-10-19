@@ -1,0 +1,2 @@
+-- Задание 2.2.10.TSK.B: показать информацию обо всех читателях и датах выдачи им в библиотеке книг.
+select `subscribers`.`s_id`, `s_name`, `sb_start` from `subscribers` left join `subscriptions` on `subscribers`.`s_id` = `subscriptions`.`s_id` order by `s_name`;

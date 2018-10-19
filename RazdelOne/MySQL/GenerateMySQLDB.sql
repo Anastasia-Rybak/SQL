@@ -1,30 +1,16 @@
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS `authors` CASCADE
-;
+DROP DATABASE IF EXISTS `library`;
 
-DROP TABLE IF EXISTS `books` CASCADE
-;
+CREATE DATABASE IF NOT EXISTS `library` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-DROP TABLE IF EXISTS `genres` CASCADE
-;
-
-DROP TABLE IF EXISTS `m2m_books_authors` CASCADE
-;
-
-DROP TABLE IF EXISTS `m2m_books_genres` CASCADE
-;
-
-DROP TABLE IF EXISTS `subscribers` CASCADE
-;
-
-DROP TABLE IF EXISTS `subscriptions` CASCADE
-;
+USE `library`;
 
 CREATE TABLE `authors`
 (
 	`a_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT ,
 	`a_name` VARCHAR(150),
+	`a_last_issue` DATE,
 	CONSTRAINT `PK_authors` PRIMARY KEY (`a_id`)
 )
 ;
@@ -43,6 +29,7 @@ CREATE TABLE `genres`
 (
 	`g_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT ,
 	`g_name` VARCHAR(150),
+	`g_books` INT UNSIGNED default 0,
 	CONSTRAINT `PK_genres` PRIMARY KEY (`g_id`)
 )
 ;
@@ -67,6 +54,9 @@ CREATE TABLE `subscribers`
 (
 	`s_id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT ,
 	`s_name` VARCHAR(150),
+	`s_last_visit` DATE,    
+	`s_books` INT UNSIGNED default 0,
+	`s_count_books` INT UNSIGNED default 0,
 	CONSTRAINT `PK_subscribers` PRIMARY KEY (`s_id`)
 )
 ;
@@ -74,13 +64,78 @@ CREATE TABLE `subscribers`
 CREATE TABLE `subscriptions`
 (
 	`sb_id` INTEGER UNSIGNED NOT NULL,
-	`s_id` INTEGER UNSIGNED,
-	`b_id` INTEGER UNSIGNED,
+	`sb_subscriber` INTEGER UNSIGNED,
+	`sb_book` INTEGER UNSIGNED,
 	`sb_start` DATE,
 	`sb_finish` DATE,
 	`sb_is_active` ENUM ('Y', 'N'),
 	CONSTRAINT `PK_subscriptions` PRIMARY KEY (`sb_id`)
 )
+;
+
+CREATE TABLE `cities`
+(
+	`ct_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+	`ct_name` VARCHAR(50),
+	CONSTRAINT `PK_cities` PRIMARY KEY (`ct_id`)
+)
+;
+
+CREATE TABLE `connections`
+(
+	`cn_from` INT UNSIGNED NOT NULL,
+	`cn_to` INT UNSIGNED NOT NULL,
+	`cn_cost` DOUBLE,
+	`cn_bidir` ENUM ('N', 'Y'),
+	CONSTRAINT `PK_connections` PRIMARY KEY (`cn_from`,`cn_to`)
+)
+;
+
+CREATE TABLE `site_pages`
+(
+	`sp_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+	`sp_parent` INT UNSIGNED,
+	`sp_name` VARCHAR(200),
+	CONSTRAINT `PK_site_pages` PRIMARY KEY (`sp_id`)
+)
+;
+
+CREATE TABLE `computers`
+(
+	`c_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+	`c_room` INT UNSIGNED,
+	`c_name` VARCHAR(50),
+	CONSTRAINT `PK_computers` PRIMARY KEY (`c_id`)
+)
+;
+
+CREATE TABLE `rooms`
+(
+	`r_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+	`r_name` VARCHAR(50),
+	`r_space` TINYINT,
+	CONSTRAINT `PK_rooms` PRIMARY KEY (`r_id`)
+)
+;
+
+ALTER TABLE `computers` 
+ ADD CONSTRAINT `FK_computers_rooms`
+	FOREIGN KEY (`c_room`) REFERENCES `rooms` (`r_id`) ON DELETE Cascade ON UPDATE Cascade
+;
+
+ALTER TABLE `connections` 
+ ADD CONSTRAINT `FK_connections_cities`
+	FOREIGN KEY (`cn_from`) REFERENCES `cities` (`ct_id`) ON DELETE Cascade ON UPDATE Cascade
+;
+
+ALTER TABLE `connections` 
+ ADD CONSTRAINT `FK_connections_cities_02`
+	FOREIGN KEY (`cn_to`) REFERENCES `cities` (`ct_id`) ON DELETE Cascade ON UPDATE Cascade
+;
+
+ALTER TABLE `site_pages` 
+ ADD CONSTRAINT `FK_site_pages_site_pages`
+	FOREIGN KEY (`sp_parent`) REFERENCES `site_pages` (`sp_id`) ON DELETE Set Null ON UPDATE Set Null
 ;
 
 ALTER TABLE `genres` 
@@ -105,6 +160,16 @@ ALTER TABLE `m2m_books_genres`
 ALTER TABLE `m2m_books_genres` 
  ADD CONSTRAINT `FK_m2m_books_genres_genres`
 	FOREIGN KEY (`g_id`) REFERENCES `genres` (`g_id`) ON DELETE Cascade ON UPDATE Cascade
+;
+
+ALTER TABLE `subscriptions` 
+ ADD CONSTRAINT `FK_subscriptions_books`
+	FOREIGN KEY (`sb_book`) REFERENCES `books` (`b_id`) ON DELETE Cascade ON UPDATE Cascade
+;
+
+ALTER TABLE `subscriptions` 
+ ADD CONSTRAINT `FK_subscriptions_subscribers`
+	FOREIGN KEY (`sb_subscriber`) REFERENCES `subscribers` (`s_id`) ON DELETE Cascade ON UPDATE Cascade
 ;
 
 SET FOREIGN_KEY_CHECKS=1

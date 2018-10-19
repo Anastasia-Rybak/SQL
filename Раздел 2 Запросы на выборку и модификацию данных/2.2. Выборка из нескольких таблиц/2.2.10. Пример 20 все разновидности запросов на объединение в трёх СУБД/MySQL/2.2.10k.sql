@@ -1,0 +1,2 @@
+-- Задача 2.2.10.k: показать возможные варианты расстановки свободных компьютеров по пустым комнатам (не учитывать вместимость комнат).
+SELECT `r_id`, `r_name`, `c_id`, `c_room`, `c_name` FROM (SELECT `r_id`, `r_name` FROM `rooms` WHERE `r_id` NOT IN (SELECT DISTINCT `c_room` FROM `computers` WHERE `c_room` IS NOT NULL)) AS `empty_rooms` CROSS JOIN `computers`
